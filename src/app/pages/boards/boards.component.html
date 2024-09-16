@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+<div class="container max-w-screen-lg mx-auto flex gap-4 flex-row justify-center pb-10">
+  <nav class="asidebar m-0 mt-10 max-h-[90vh] px-4 top-10 w-64 sticky">
+    <ul class="flex flex-col gap-y-1">
+      <li class="active">
+        <a class="bg-[#E9F2FF] shadow-none text-[#0C66E4] font-semibold no-underline flex gap-2 
+          items-center min-h-5 m-0 py-1 px-2 overflow-hidden rounded-lg cursor-pointer ">
+          <fa-icon [icon]="faTable"></fa-icon>Boards
+        </a>
+      </li>
+      <li>
+        <a class="bg-transparent shadow-none text-[#172B4D] font-semibold no-underline flex gap-2 
+          items-center min-h-5 m-0 py-1 px-2 overflow-hidden rounded-lg cursor-pointer">
+          <fa-icon [icon]="faBorderTopLeft"></fa-icon>
+          Templates
+        </a>
+      </li>
+      <li>
+        <a class="bg-transparent shadow-none text-[#172B4D] font-semibold no-underline flex gap-2 
+          items-center min-h-5 m-0 py-1 px-2 overflow-hidden rounded-lg cursor-pointer">
+          <fa-icon [icon]="faChartLine"></fa-icon>
+          Home
+        </a>
+      </li>
+    </ul>
+    <cdk-accordion>
+      <cdk-accordion-item #accordionMenu="cdkAccordionItem">
+        <button class="w-full py-1 px-2 flex justify-between items-center" type="button"
+          (click)="accordionMenu.toggle()">
+          My workspace
+          <fa-icon [icon]="accordionMenu.expanded ? faAngleUp : faAngleDown"></fa-icon>
+        </button>
+        <div [style.display]="accordionMenu.expanded ? '' : 'none' ">
+          <ul class="ml-2 flex flex-col text-sm text-gray-700">
+            <li>
+              <a class="block py-1 px-3"><fa-icon [icon]="faTable"></fa-icon> Boards</a>
+            </li>
+            <li>
+              <a class="block py-1 px-3"><fa-icon [icon]="faHeart"></fa-icon> Highlights</a>
+            </li>
+            <li>
+              <a class="block py-1 px-3"><fa-icon [icon]="faBorderAll"></fa-icon> Views</a>
+            </li>
+            <li>
+              <a class="block py-1 px-3"><fa-icon [icon]="faUsers"></fa-icon> Members</a>
+            </li>
+            <li>
+              <a class="block py-1 px-3"><fa-icon [icon]="faGear"></fa-icon> Settings</a>
+            </li>
+          </ul>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
+    <cdk-accordion>
+      <cdk-accordion-item #accordionItem="cdkAccordionItem" *ngFor="let item of items">
+        <button type="button" class="w-full text-left" (click)="accordionItem.toggle()">{{item.label}}</button>
+        <div [style.display]="accordionItem.expanded ? '' : 'none' ">
+          <ul>
+            <li *ngFor="let subItem of item.items">{{subItem.label}}</li>
+          </ul>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
+  </nav>
+  <div class="content w-full mt-10">
+    <h1 class="mb-4 text-[#172B4D] font-semibold">
+      <fa-icon [icon]="faClock"></fa-icon>
+      Recently viewed
+    </h1>
+    <div class="boards grid gap-4 grid-cols-4">
+      <div class="CardBoard rounded bg-blue-950 text-white h-24 p-2 font-semibold">
+        <h2>Board 1</h2>
+      </div>
+      <div class="CardBoard rounded bg-green-700 text-white h-24 p-2 font-semibold">
+        <h2>Board 2</h2>
+      </div>
+      <div class="CardBoard rounded bg-orange-800 text-white h-24 p-2 font-semibold">
+        <h2>Board 3</h2>
+      </div>
+      <div class="CardBoard rounded bg-slate-500 text-white h-24 p-2 font-semibold">
+        <h2>Board 4</h2>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- transition-property: background-color, border-color, box-shadow;
+transition-duration: 85ms;
+transition-timing-function: ease; -->
