@@ -9,8 +9,15 @@ import { CommonModule } from '@angular/common';
 })
 export class BtnComponent implements OnInit {
   @Input() typeBtn: "button" | "reset" | "submit" = "button";
-  @Input() color: string = "";
+  @Input() color: 'success' | 'primary' | 'red' | 'gray-light' = 'gray-light';
   miclass = {'btn': true};
+
+  mapColors = {
+    'success': 'bg-success-700 hover:bg-success-800 focus:ring-success-300',
+    'primary': 'bg-primary-700 hover:bg-primary-800 focus:ring-primary-300',
+    'red': 'bg-red-700 hover:bg-red-800 focus:ring-red-300',
+    'gray-light': 'bg-gray-200 hover:bg-gray-500 focus:ring-gray-50'
+  }
 
   constructor() {} 
 
@@ -19,11 +26,12 @@ export class BtnComponent implements OnInit {
   }
 
   get colors(): any {
-    return {
-      'bg-success-700 hover:bg-success-800 focus:ring-success-300': this.color === 'success',
-      'bg-primary-700 hover:bg-primary-800 focus:ring-primary-300': this.color === 'primary',
-      'bg-red-700 hover:bg-red-800 focus:ring-red-300': this.color === 'red',
+    const colors = this.mapColors[this.color];
+    if(colors) {
+      return colors;
     }
+
+    return {}
   }
 
 }
